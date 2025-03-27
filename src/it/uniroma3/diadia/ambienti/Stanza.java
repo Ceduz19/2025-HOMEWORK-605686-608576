@@ -153,6 +153,8 @@ public class Stanza {
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
+		if (nomeAttrezzo == null) return null;
+		
 		Attrezzo attrezzoCercato;
 		attrezzoCercato = null;
 		for (int i=0;i<numeroAttrezzi;i++) {

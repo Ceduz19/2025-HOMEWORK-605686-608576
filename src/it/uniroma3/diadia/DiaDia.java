@@ -37,7 +37,7 @@ public class DiaDia {
 	private Giocatore giocatore;
 	private Borsa borsa;
 	
-	public DiaDia(IOConsole console) {
+	public DiaDia() {
 		this.partita = new Partita();
 		this.labirinto = partita.getLabirinto();
 		this.giocatore = partita.getGiocatore();
@@ -122,11 +122,15 @@ public class DiaDia {
 	
 	//Prende un attrezzo dalla stanza
 	private void prendi(String nomeAttrezzo,IOConsole console) {
-		if (nomeAttrezzo == null)
-			console.mostraMessaggio("Quale attrezzo vuoi prendere?");
+		if (nomeAttrezzo == null) {
+			console.mostraMessaggio("Nessun attrezzo da prendere specificato!");
+			return;
+		}
 		
-		if(!this.labirinto.getStanzaCorrente().hasAttrezzo(nomeAttrezzo))
-			console.mostraMessaggio("Attrezzo non prensente nella stanza!");
+		if(!this.labirinto.getStanzaCorrente().hasAttrezzo(nomeAttrezzo)) {
+			console.mostraMessaggio("L'attrezzo \"" + nomeAttrezzo + "\" non è prensente nella stanza!");
+			return;
+		}
 
 		Attrezzo attrezzoDaSpostare = this.labirinto.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 		if(this.giocatore.getBorsa().addAttrezzo(attrezzoDaSpostare)) {
@@ -137,13 +141,18 @@ public class DiaDia {
 			console.mostraMessaggio("Borsa piena!");
 	}
 	
+	
 	//Posa un attrezzo nella stanza
 	private void posa(String nomeAttrezzo,IOConsole console) {
-		if (nomeAttrezzo == null)
-			console.mostraMessaggio("Quale attrezzo vuoi posare?");
+		if (nomeAttrezzo == null) {
+			console.mostraMessaggio("Nessun attrezzo da posare specificato!");
+			return;
+		}
 		
-		if(!this.borsa.hasAttrezzo(nomeAttrezzo))
-			console.mostraMessaggio("Attrezzo non prensente nella borsa!");
+		if(!this.borsa.hasAttrezzo(nomeAttrezzo)) {
+			console.mostraMessaggio("L'attrezzo \"" + nomeAttrezzo + "\" non è prensente nella borsa!");
+			return;
+		}
 		
 		Attrezzo attrezzoDaSpostare = this.borsa.getAttrezzo(nomeAttrezzo);
 		if(this.labirinto.getStanzaCorrente().addAttrezzo(attrezzoDaSpostare)) {
@@ -156,7 +165,7 @@ public class DiaDia {
 
 	public static void main(String[] argc) {
 		IOConsole console = new IOConsole();
-		DiaDia gioco = new DiaDia(console);
+		DiaDia gioco = new DiaDia();
 		gioco.gioca(console);
 	}
 }
