@@ -1,7 +1,4 @@
 package it.uniroma3.diadia.ambienti;
-
-import java.util.Iterator;
-
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -129,8 +126,8 @@ public class Stanza {
     		if (direzione!=null)
     			risultato.append(" " + direzione);
     	risultato.append("\nAttrezzi nella stanza: ");
-    	for (Attrezzo attrezzo : this.attrezzi) {
-    		risultato.append(attrezzo.toString()+" ");
+    	for (int i=0;i<this.numeroAttrezzi;i++) {
+    		risultato.append(attrezzi[i].toString()+" ");
     	}
     	return risultato.toString();
     }
@@ -140,11 +137,13 @@ public class Stanza {
 	* @return true se l'attrezzo esiste nella stanza, false altrimenti.
 	*/
 	public boolean hasAttrezzo(String nomeAttrezzo) {
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
-				return true;
+		boolean trovato;
+		trovato = false;
+		for (int i=0;i<numeroAttrezzi;i++) {
+			if (attrezzi[i].getNome().equals(nomeAttrezzo))
+				trovato = true;
 		}
-		return false;
+		return trovato;
 	}
 
 	/**
@@ -154,11 +153,13 @@ public class Stanza {
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
-				return attrezzo;
+		Attrezzo attrezzoCercato;
+		attrezzoCercato = null;
+		for (int i=0;i<numeroAttrezzi;i++) {
+			if (attrezzi[i].getNome().equals(nomeAttrezzo))
+				attrezzoCercato = attrezzi[i];
 		}
-		return null;	
+		return attrezzoCercato;	
 	}
 
 	/**
@@ -167,14 +168,13 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		Attrezzo a;
-		for (int i = 0; i < this.numeroAttrezzi; i++) {
-			a = this.attrezzi[i];
-			if (a == null || !a.equals(attrezzo)) continue;
-			
-			this.attrezzi[i] = null;
-			this.numeroAttrezzi--;
-			return true;
+		for(int i=0;i<numeroAttrezzi;i++) {
+			if(attrezzi[i].equals(attrezzo)) {
+				attrezzi[i]=null;
+				numeroAttrezzi--;
+				return true;
+			}
+				
 		}
 		return false;
 	}

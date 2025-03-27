@@ -2,12 +2,6 @@ package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-/**
- * @author Ceduz19
- * @version base
- * 
- * @see Partita
- */
 public class Labirinto {
 	
 	private Stanza stanzaCorrente;
@@ -21,8 +15,8 @@ public class Labirinto {
      * Crea tutte le stanze e le porte di collegamento
      */
     private void creaStanze() {
-
-		/* crea gli attrezzi */
+    	
+    	/* crea gli attrezzi */
     	Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1);
     	
@@ -47,15 +41,15 @@ public class Labirinto {
 		laboratorio.impostaStanzaAdiacente("ovest", aulaN11);
 		biblioteca.impostaStanzaAdiacente("sud", atrio);
 
-        /* pone gli attrezzi nelle stanze */
-		aulaN10.addAttrezzo(lanterna);
-		atrio.addAttrezzo(osso);
-
 		// il gioco comincia nell'atrio
         stanzaCorrente = atrio;  
 		stanzaVincente = biblioteca;
+		
+		/* pone gli attrezzi nelle stanze */
+		aulaN10.addAttrezzo(lanterna);
+		atrio.addAttrezzo(osso);
     }
-
+    
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
@@ -67,5 +61,4 @@ public class Labirinto {
 	public Stanza getStanzaCorrente() {
 		return this.stanzaCorrente;
 	}
-
 }
