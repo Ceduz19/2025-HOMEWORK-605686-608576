@@ -25,7 +25,7 @@ class LabirintoTest {
 	@Test
 	void testSetStanzaCorrenteNull() {
 		labirinto.setStanzaCorrente(null);
-		assertEquals(null,labirinto.getStanzaCorrente());
+        assertNull(labirinto.getStanzaCorrente());
 	}
 
 	@Test

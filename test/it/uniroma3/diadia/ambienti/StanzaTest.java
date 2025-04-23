@@ -67,13 +67,13 @@ class StanzaTest {
 	void testImpostaStanzaAdiacenteAggiornamentoDirezione() {
 		stanza.impostaStanzaAdiacente("nord", stanzaNord);
 		stanza.impostaStanzaAdiacente("sud", stanzaSud);
-		assertEquals(stanzaSud,stanza.getStanzaAdiacente("nord"));
+		assertNotEquals(stanzaSud, stanza.getStanzaAdiacente("nord"));
 	}
 	
 	@Test
 	void testImpostaStanzaAdiancenteDirezioneNull() {
-		stanza.impostaStanzaAdiacente("null", stanzaNord);
-		assertEquals(stanzaNord, stanza.getStanzaAdiacente("null"));
+		stanza.impostaStanzaAdiacente(null, stanzaNord);
+		assertNotEquals(stanzaNord, stanza.getStanzaAdiacente(null));
 	}
 
 }

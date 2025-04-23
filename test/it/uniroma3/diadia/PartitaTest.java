@@ -7,15 +7,14 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 
-
-
 class PartitaTest {
+
 	Partita partita;
 	Labirinto labirinto;
 	
 	@BeforeEach
 	void setUp() {
-		partita = new Partita();
+		partita = new Partita(new IOConsole());
 		labirinto = partita.getLabirinto();
 	}
 
