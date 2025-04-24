@@ -66,6 +66,10 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}
 
+	public Partita getPartita() {
+		return partita;
+	}
+
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
 		DiaDia gioco = new DiaDia(io);

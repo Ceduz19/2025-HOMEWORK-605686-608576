@@ -26,6 +26,7 @@ public class ComandoVai implements Comando {
 
         partita.getLabirinto().setStanzaCorrente(prossimaStanza);
         partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
+        io.mostraMessaggio("Sei andato nella stanza a " + this.direzione);
     }
 
     @Override

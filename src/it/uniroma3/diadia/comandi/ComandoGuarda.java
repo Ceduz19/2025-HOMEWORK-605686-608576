@@ -13,7 +13,7 @@ public class ComandoGuarda implements Comando {
         IO io = partita.getIo();
 
         io.mostraMessaggio("###### PARITA ######");
-        io.mostraMessaggio("- Stato: " + (partita.isFinita() ? "finita" : "in corso"));
+        io.mostraMessaggio("Stato: " + (partita.isFinita() ? "finita" : "in corso"));
 
         mostraInfoGiocatore(partita, io);
         mostraInfoStanzaCorrente(partita, io);
@@ -30,47 +30,20 @@ public class ComandoGuarda implements Comando {
             return;
         }
 
-        io.mostraMessaggio("- CFU: " + giocatore.getCfu());
+        io.mostraMessaggio("CFU: " + giocatore.getCfu());
 
         io.mostraMessaggio("--- BORSA");
         Borsa borsa = giocatore.getBorsa();
-        if (borsa == null) {
-            io.mostraMessaggio("[!] Il giocatore non ha alcuna borsa");
-            return;
-        }
-
-        io.mostraMessaggio("- Peso max: " + borsa.getPesoMax());
-        io.mostraMessaggio("- Peso attuale: " + borsa.getPeso());
+        if (borsa == null) io.mostraMessaggio("[!] Il giocatore non ha alcuna borsa");
+        else io.mostraMessaggio(borsa.toString());
     }
 
     private void mostraInfoStanzaCorrente(Partita partita, IO io) {
         io.mostraMessaggio("\n---- STANZA CORRENTE");
         Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 
-        if (stanzaCorrente == null) {
-            io.mostraMessaggio("[!] Il giocatore non si trova in nessuna stanza");
-            return;
-        }
-
-        String nome = stanzaCorrente.getNome();
-        String desc = stanzaCorrente.getDescrizione();
-
-        io.mostraMessaggio("- Nome: " + (nome == null ? "nessuno" : nome));
-        io.mostraMessaggio("- Descrizione: " + (desc == null ? "nessuna" : desc));
-
-        String[] direzioni = stanzaCorrente.getDirezioni();
-        StringBuilder direzioniDisp = new StringBuilder();
-        String curr;
-        for (int i = 0; i < direzioni.length; i++) {
-            curr = direzioni[i];
-            if (curr == null) break;
-
-            direzioniDisp.append(curr);
-            if (i+1 < direzioni.length && direzioni[i+1] != null) direzioniDisp.append(", ");
-        }
-
-        io.mostraMessaggio("- Direzioni disponibili: " + direzioniDisp);
-
+        if (stanzaCorrente == null) io.mostraMessaggio("[!] Il giocatore non si trova in nessuna stanza");
+        else io.mostraMessaggio(stanzaCorrente.toString());
     }
 
     @Override
